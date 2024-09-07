@@ -181,7 +181,9 @@ async function getNFLToday (req, res) {
     try {
         await client.connect();
         const games = await client.db('sportsai').collection('nfl').find().project({
-            _id: 1, teamOne: 1, teamTwo: 1, week: 1, stadium: 1, date: 1, odds: 1, time: 1})
+            _id: 1, teamOne: 1, teamTwo: 1, week: 1, stadium: 1, date: 1, odds: 1, time: 1,
+            teamOneWinner: 1, teamOneLineScore: 1, teamTwoLineScore: 1, teamOneScore: 1, teamTwoScore: 1
+        })
             .toArray();
         res.json(games);
     } catch (err) {
